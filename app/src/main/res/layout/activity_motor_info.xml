@@ -1,0 +1,296 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motor Information"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <!-- Motor Icon Box -->
+        <LinearLayout
+            android:id="@+id/motorIconBox"
+            android:layout_width="200dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_motor_info_box"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_motor"
+                app:tint="#263238" />
+
+            <TextView
+                android:id="@+id/tvMotorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Motor 1"
+                android:textSize="18sp"
+                android:textColor="#263238"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Status Section -->
+        <LinearLayout
+            android:id="@+id/statusSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp">
+
+            <!-- Status -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/viewStatusIndicator"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:background="@drawable/bg_circle_indicator_green" />
+
+                <TextView
+                    android:id="@+id/tvMotorStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Running"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Condition -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Condition"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:background="@drawable/bg_circle_indicator_green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Automatic Operation Section -->
+
+        <!-- History Container -->
+        <LinearLayout
+            android:id="@+id/autoSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_panel_light_blue_rounded"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automatic Operation"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- ON/OFF Switch -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_switch_on_green"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_radio_button_checked"
+                    app:tint="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="ON/OFF"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/autoSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:checked="false" />
+            </LinearLayout>
+
+
+            <!-- Schedule Layout -->
+            <LinearLayout
+                android:id="@+id/scheduleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_white_rounded"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Date, Time, Duration Pickers -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSetDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Set Date" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Not set"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSetTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Set Time" />
+
+                    <TextView
+                        android:id="@+id/tvScheduleTime"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Not set"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnSetDuration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Set Duration" />
+
+                    <TextView
+                        android:id="@+id/tvDuration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Not set"
+                        android:textColor="#000000" />
+                </LinearLayout>
+
+                <!-- Save Automation Button -->
+                <Button
+                    android:id="@+id/btnSaveSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_button_green_rounded"
+                    android:text="Save Automation"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/historyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="@drawable/bg_card_white_rounded"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="140dp"
+            android:layout_height="37dp"
+            android:background="@drawable/bg_button_red_rounded"
+            android:drawableLeft="@drawable/ic_arrow_back_small"
+            android:drawablePadding="2dp"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+</ScrollView>

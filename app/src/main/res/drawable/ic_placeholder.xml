@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Outer circle with shadow effect -->
+    <path
+        android:fillColor="#CFD8DC"
+        android:pathData="M24,2C12.95,2 4,10.95 4,22s8.95,20 20,20 20,-8.95 20,-20S35.05,2 24,2z"/>
+
+    <!-- Inner rectangle (simulating a device or actuator) -->
+    <path
+        android:fillColor="#B0BEC5"
+        android:pathData="M16,20h16v12H16z"/>
+
+    <!-- Small indicator circle on top -->
+    <path
+        android:fillColor="#78909C"
+        android:pathData="M24,16a2,2 0 1,0 0.001,0z"/>
+
+    <!-- Accent lines (simulating buttons or lights) -->
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M20,24h2v2h-2zM26,24h2v2h-2zM20,28h2v2h-2zM26,28h2v2h-2z"/>
+</vector>

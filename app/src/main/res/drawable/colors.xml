@@ -1,0 +1,11 @@
+<resources>
+    <!-- Custom colors -->
+    <color name="myGreen">#4CAF50</color>
+    <color name="myRed">#D32F2F</color>
+    <color name="myBlue">#1565C0</color>
+    <color name="myGray">#9E9E9E</color>
+    <color name="myYellow">#FFC107</color>
+    <color name="myOrange">#FF5722</color>
+    <color name="myLightGray">#BDBDBD</color>
+    <color name="myDarkGray">#455A64</color>
+</resources>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+
+    <!-- Centered Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_white_rounded"
+        android:padding="24dp"
+        android:layout_gravity="center"
+        android:elevation="12dp"
+        android:clipToPadding="false"
+        android:clipChildren="false">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motor Automation"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Date Button -->
+        <Button
+            android:id="@+id/btnPickDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:backgroundTint="#03A9F4"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:elevation="4dp"/>
+
+        <!-- Time Button -->
+        <Button
+            android:id="@+id/btnPickTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Time"
+            android:backgroundTint="#03A9F4"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:elevation="4dp"/>
+
+        <!-- Duration Input -->
+        <EditText
+            android:id="@+id/etDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Duration (minutes)"
+            android:inputType="number"
+            android:layout_marginTop="12dp"
+            android:padding="12dp"
+            android:background="@drawable/bg_card_history_gray"/>
+
+        <!-- Buttons Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:elevation="4dp"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:padding="10dp"
+                android:layout_marginStart="12dp"
+                android:elevation="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
