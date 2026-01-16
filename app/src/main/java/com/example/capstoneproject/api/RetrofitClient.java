@@ -15,6 +15,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import com.example.capstoneproject.motors.model.Actuator;
+import com.example.capstoneproject.dashboard.models.Model;
+import com.example.capstoneproject.dashboard.models.DashboardResponse;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+
 public class RetrofitClient {
     private static RetrofitClient instance = null;
     private ApiService apiService;
@@ -79,4 +91,29 @@ public class RetrofitClient {
             Log.e("RetrofitClient", "Error clearing cookies: " + e.getMessage());
         }
     }
+
+public interface DashboardApi {
+
+    // Get all models for spinner
+    @GET("/models")
+    Call<List<Model>> getModels();
+
+    // Get latest readings for a model
+    @GET("/models/{id}/latest")
+    Call<DashboardResponse> getLatestReadings(@Path("id") int modelId);
+
+    // Get actuators for a model (global or selected)
+    @GET("/actuators")
+    Call<List<Actuator>> getActuators(
+            @Query("modelId") int modelId,
+            @Query("global") boolean isGlobal
+    );
+
+    // Update actuator status
+    @PUT("/actuators/{id}")
+    Call<Void> updateActuatorStatus(
+            @Path("id") int id,
+            @Query("active") boolean active
+    );
+}
 }

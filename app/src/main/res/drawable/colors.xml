@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Custom colors -->
     <color name="myGreen">#4CAF50</color>
@@ -8,4 +9,6 @@
     <color name="myOrange">#FF5722</color>
     <color name="myLightGray">#BDBDBD</color>
     <color name="myDarkGray">#455A64</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_200">#80CBC4</color>
 </resources>

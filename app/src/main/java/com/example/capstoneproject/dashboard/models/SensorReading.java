@@ -1,28 +1,20 @@
 package com.example.capstoneproject.dashboard.models;
 
-
 import com.google.gson.annotations.SerializedName;
 
 public class SensorReading {
-    @SerializedName("temperature")
-    private float temperature;
 
-    @SerializedName("humidity")
-    private float humidity;
+    @SerializedName("reading_value")
+    private double readingValue;
 
-    @SerializedName("ph")
-    private float ph;
+    @SerializedName("record_date")
+    private String recordDate;
 
-    @SerializedName("tds")
-    private float tds;
+    public double getReadingValue() {
+        return readingValue;
+    }
 
-    @SerializedName("light")
-    private float light;
-
-    // Getters
-    public float getTemperature() { return temperature; }
-    public float getHumidity() { return humidity; }
-    public float getPh() { return ph; }
-    public float getTds() { return tds; }
-    public float getLight() { return light; }
+    public String getRecordDate() {
+        return recordDate;
+    }
 }

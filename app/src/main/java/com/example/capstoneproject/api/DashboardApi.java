@@ -1,43 +1,26 @@
 package com.example.capstoneproject.api;
 
-import com.example.capstoneproject.motors.model.Actuator;
 import com.example.capstoneproject.dashboard.models.Model;
-import com.example.capstoneproject.dashboard.models.SensorReading;
-
+import com.example.capstoneproject.dashboard.models.ModelSensor;
+import com.example.capstoneproject.dashboard.models.Reading;
+import com.example.capstoneproject.dashboard.models.Sensor;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface DashboardApi {
-
-//    // Actuators
-//    @GET("/actuators/global")
-//    Call<List<Actuator>> getGlobalActuators();
-//
-//    @GET("/actuators/selected")
-//    Call<List<Actuator>> getSelectedActuators();
-
-    @GET("/actuators/model/1")
-    Call<List<Actuator>> getGlobalActuators();
-
-    @GET("/actuators/model/1")
-    Call<List<Actuator>> getSelectedActuators();
-
-    // Models for Dashboard
-    @GET("/models")
+    // MODELS
+    @GET("api/model")
     Call<List<Model>> getModels();
 
-    // Latest sensor reading by model
-    @GET("/models/{id}/latest")
-    Call<SensorReading> getLatestReadings(@Path("id") int modelId);
-    @GET("actuators")
-    Call<List<Actuator>> getActuators(@Query("global") boolean isGlobal);
+    // MODEL SENSORS (THIS IS THE IMPORTANT ONE)
+    @GET("api/model-sensor/model/{id}")
+    Call<List<ModelSensor>> getModelSensors(@Path("id") int modelId);
 
-    @PUT("actuator/{id}/update")
-    Call<Void> updateActuatorStatus(@Path("id") int id, @Query("active") boolean status);
-
+    // READINGS BY MODEL_SENSOR_ID
+    @GET("api/readings/sensor/{modelSensorId}")
+    Call<List<Reading>> getReadingsByModelSensor(
+            @Path("modelSensorId") int modelSensorId
+    );
 }

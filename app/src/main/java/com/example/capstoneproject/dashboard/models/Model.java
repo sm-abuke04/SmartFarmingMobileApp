@@ -1,17 +1,25 @@
 package com.example.capstoneproject.dashboard.models;
 
-public class Model {
-    private int id;
-    private String name;
+import com.google.gson.annotations.SerializedName;
 
-    public Model(int id, String name) {
-        this.id = id;
-        this.name = name;
+public class Model {
+
+    @SerializedName("hydromodel_id")
+    private int hydromodelId;
+
+    @SerializedName("hydromodel_name")
+    private String hydromodelName;
+
+    public int getHydromodelId() {
+        return hydromodelId;
     }
 
-    public int getId() { return id; }
-    public String getName() { return name; }
+    public String getHydromodelName() {
+        return hydromodelName;
+    }
 
     @Override
-    public String toString() { return name; } // important for Spinner display
+    public String toString() {
+        return hydromodelName;
+    }
 }
