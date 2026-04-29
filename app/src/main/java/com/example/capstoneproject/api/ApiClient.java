@@ -77,8 +77,9 @@ public class ApiClient {
     private static Retrofit retrofit;
 
     // ✅ BASE URL MUST END HERE
-    private static final String BASE_URL =
-            "https://uep-smartfarming-backend.onrender.com/";
+  private static final String BASE_URL = "https://uep-smartfarming-backend.onrender.com/";
+
+   // public static final String BASE_URL = "http://192.168.254.199:5000/";
 
     public static Retrofit getClient(Context context) {
 
@@ -91,9 +92,9 @@ public class ApiClient {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
             OkHttpClient client = new OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
                     .addInterceptor(chain -> {
                         Request original = chain.request();
 
@@ -108,6 +109,7 @@ public class ApiClient {
                         return chain.proceed(builder.build());
                     })
                     .addInterceptor(logging)
+                    .retryOnConnectionFailure(true)
                     .build();
 
             retrofit = new Retrofit.Builder()

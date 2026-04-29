@@ -47,14 +47,6 @@
                 android:textColor="#A0FFFFFF"
                 android:textSize="13sp" />
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/btnSettings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_settings"
-            app:tint="#FFFFFF" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -78,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bg_switcher_pill" />
+                android:src="@drawable/hydroponic" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +111,7 @@
             android:background="@drawable/bg_switcher_pill"
             android:elevation="2dp"
             android:gravity="center"
-            android:text="FRONT GATE"
+            android:text="HYDROPONIC MODEL"
             android:textColor="#0A3327"
             android:textStyle="bold" />
 

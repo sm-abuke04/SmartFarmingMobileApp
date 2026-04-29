@@ -42,6 +42,7 @@ package com.example.capstoneproject.api;
 import com.example.capstoneproject.motors.model.Actuator;
 import com.example.capstoneproject.motors.model.CommandRequest;
 import com.example.capstoneproject.motors.model.LatestCommand;
+import com.example.capstoneproject.motors.model.ModeRequest;
 
 import java.util.List;
 
@@ -58,5 +59,10 @@ public interface ActuatorApi {
     @POST("/api/actuator/command")
     Call<LatestCommand> sendActuatorCommand(
             @Body CommandRequest body
+    );
+
+    @POST("/api/actuator/mode")
+    Call<Void> updateActuatorMode(
+            @Body ModeRequest body
     );
 }

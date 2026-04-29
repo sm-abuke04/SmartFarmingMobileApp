@@ -17,8 +17,8 @@
         android:contentDescription="Manage motor and irrigation controls" />
     <item
         android:id="@+id/nav_config"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"
+        android:icon="@drawable/ic_about_us"
+        android:title="About Us"
         android:contentDescription="App settings and about us" />
 </menu>
 <!--    <?xml version="1.0" encoding="utf-8"?>-->

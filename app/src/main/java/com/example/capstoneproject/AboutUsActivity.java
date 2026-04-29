@@ -20,7 +20,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
     private static final String TAG = "AboutUsActivity";
     ImageButton btnBack;
-    LinearLayout btnLogout;
+//    LinearLayout btnLogout;
     CardView cardSM, cardBomel; // Team member cards
 
     @Override
@@ -40,7 +40,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
         // Initialize views
         btnBack = findViewById(R.id.btnBack);
-        btnLogout = findViewById(R.id.btnLogout);
+//        btnLogout = findViewById(R.id.btnLogout);
 
         // Initialize team member cards
         cardSM = findViewById(R.id.cardSM);
@@ -53,10 +53,10 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
         // Logout click
-        btnLogout.setOnClickListener(v -> {
-            Log.d(TAG, "Logout button clicked - performing logout");
-            performLogout();
-        });
+//        btnLogout.setOnClickListener(v -> {
+//            Log.d(TAG, "Logout button clicked - performing logout");
+//            performLogout();
+//        });
 
         // Team member clicks
         cardSM.setOnClickListener(v -> {
@@ -70,23 +70,23 @@ public class AboutUsActivity extends AppCompatActivity {
         });
     }
 
-    private void performLogout() {
-        Log.d(TAG, "=== STARTING LOGOUT PROCESS ===");
-
-        try {
-            Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
-            RetrofitClient.getInstance(getApplicationContext()).clearCookies();
-            SharedPrefManager.getInstance(this).logout();
-
-            Intent intent = new Intent(AboutUsActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-
-            Log.d(TAG, "=== LOGOUT COMPLETED SUCCESSFULLY ===");
-        } catch (Exception e) {
-            Log.e(TAG, "Error during logout: " + e.getMessage(), e);
-            Toast.makeText(this, "Logout error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+//    private void performLogout() {
+//        Log.d(TAG, "=== STARTING LOGOUT PROCESS ===");
+//
+//        try {
+//            Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
+//            RetrofitClient.getInstance(getApplicationContext()).clearCookies();
+//            SharedPrefManager.getInstance(this).logout();
+//
+//            Intent intent = new Intent(AboutUsActivity.this, LoginActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//            finish();
+//
+//            Log.d(TAG, "=== LOGOUT COMPLETED SUCCESSFULLY ===");
+//        } catch (Exception e) {
+//            Log.e(TAG, "Error during logout: " + e.getMessage(), e);
+//            Toast.makeText(this, "Logout error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//        }
+//    }
 }

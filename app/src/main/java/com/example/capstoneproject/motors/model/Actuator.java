@@ -1,5 +1,7 @@
 package com.example.capstoneproject.motors.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,13 @@ public class Actuator {
     public List<GlobalCommand> getGlobalCommands() {
         if (GlobalCommands == null) GlobalCommands = new ArrayList<>();
         return GlobalCommands;
+    }
+
+    @SerializedName("actuator_status")
+    private String actuatorStatus;
+
+    public String getActuatorStatus() {
+        return actuatorStatus;
     }
 
     // Setters

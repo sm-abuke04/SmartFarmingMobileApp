@@ -37,14 +37,6 @@
                 android:textColor="#607D8B"
                 android:textSize="14sp" />
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/btnSettings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_settings"
-            app:tint="#FFFFFF" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +56,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Global"
-            android:textColor="#FFFFFF"
+            android:textColor="#607D8B"
             android:textStyle="bold" />
 
         <TextView
@@ -113,7 +105,7 @@
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="#0A3327"
+        app:itemIconTint="#15a178"
         app:labelVisibilityMode="unlabeled" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

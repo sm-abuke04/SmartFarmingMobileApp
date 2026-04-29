@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/ivSensorIcon"
@@ -24,21 +25,21 @@
             android:src="@drawable/ic_settings" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="231dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="20dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvSensorTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="----"
-                android:textColor="#80000000"
-                android:textSize="11sp"
                 android:letterSpacing="0.05"
-                android:textAllCaps="true" />
+                android:text="----"
+                android:textAllCaps="true"
+                android:textColor="#80000000"
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/tvSensorValue"
@@ -50,6 +51,29 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OPTIMAL"
+                android:textColor="#666666"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOptimalValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#2E7D32"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

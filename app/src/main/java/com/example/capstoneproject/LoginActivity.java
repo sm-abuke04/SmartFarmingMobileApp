@@ -131,36 +131,82 @@ public class LoginActivity extends AppCompatActivity {
                         // Get user data
                         LoginResponse.UserData userData = loginResponse.getUser();
 
+//                        if (userData != null) {
+//                            String userId = userData.getUser() != null ? userData.getUser().toString() : "";
+//                            String userName = userData.getFull_name() != null ? userData.getFull_name() : "User";
+//                            String userEmail = email; // Use the email from login since it's not in response
+//                            String userRole = userData.getRole() != null ? userData.getRole() : "";
+//
+//                            Log.d(TAG, "User data - ID: " + userId + ", Name: " + userName +
+//                                    ", Email: " + userEmail + ", Role: " + userRole);
+//
+//                            // Save user session
+//                            // Note: We don't have a token in the response body, but we have it in the cookie
+//                            // The cookie will be automatically handled by Retrofit for subsequent requests
+//                            String sessionToken = "cookie_auth"; // Placeholder since token is in cookie
+//                            sharedPrefManager.userLogin(userId, userName, userEmail, sessionToken);
+//                            Log.d(TAG, "User session saved to SharedPreferences");
+//
+//                            // Navigate to dashboard
+//                            try {
+//                                Log.d(TAG, "Starting DashboardActivity...");
+//                                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+//                                startActivity(intent);
+//                                Log.d(TAG, "DashboardActivity started successfully");
+//                                finish();
+//                                Log.d(TAG, "LoginActivity finished");
+//                            } catch (Exception e) {
+//                                Log.e(TAG, "Error starting DashboardActivity: " + e.getMessage(), e);
+//                                Toast.makeText(LoginActivity.this, "Error starting app: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Log.w(TAG, "No user data in response");
+//                            Toast.makeText(LoginActivity.this, "Login failed: No user data received", Toast.LENGTH_LONG).show();
+//                        }
+
                         if (userData != null) {
-                            String userId = userData.getUser() != null ? userData.getUser().toString() : "";
-                            String userName = userData.getFull_name() != null ? userData.getFull_name() : "User";
-                            String userEmail = email; // Use the email from login since it's not in response
-                            String userRole = userData.getRole() != null ? userData.getRole() : "";
+//                            String userRole = userData.getRole() != null ? userData.getRole() : "";
+                            String userRole = userData.getRole() != null ? userData.getRole() : "User";
+                            Log.d(TAG, "User Role detected: " + userRole);
 
-                            Log.d(TAG, "User data - ID: " + userId + ", Name: " + userName +
-                                    ", Email: " + userEmail + ", Role: " + userRole);
+                            // 1. Define Authorized Roles
+                            // Using equalsIgnoreCase to prevent case-sensitivity issues from the backend
+                            boolean isAuthorized = userRole.equalsIgnoreCase("Head Director") ||
+                                    userRole.equalsIgnoreCase("Farm Technician");
 
-                            // Save user session
-                            // Note: We don't have a token in the response body, but we have it in the cookie
-                            // The cookie will be automatically handled by Retrofit for subsequent requests
-                            String sessionToken = "cookie_auth"; // Placeholder since token is in cookie
-                            sharedPrefManager.userLogin(userId, userName, userEmail, sessionToken);
-                            Log.d(TAG, "User session saved to SharedPreferences");
-
-                            // Navigate to dashboard
-                            try {
-                                Log.d(TAG, "Starting DashboardActivity...");
-                                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                                startActivity(intent);
-                                Log.d(TAG, "DashboardActivity started successfully");
-                                finish();
-                                Log.d(TAG, "LoginActivity finished");
-                            } catch (Exception e) {
-                                Log.e(TAG, "Error starting DashboardActivity: " + e.getMessage(), e);
-                                Toast.makeText(LoginActivity.this, "Error starting app: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            // 2. Check for Admin or Unauthorized roles
+                            if (userRole.equalsIgnoreCase("Admin")) {
+                                loginButton.setText("Log in");
+                                loginButton.setEnabled(true);
+                                Toast.makeText(LoginActivity.this, "Admins must use the Web Portal.", Toast.LENGTH_LONG).show();
+                                return; // Stop the login process here
                             }
 
-                            Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                            if (!isAuthorized) {
+                                loginButton.setText("Log in");
+                                loginButton.setEnabled(true);
+                                Toast.makeText(LoginActivity.this, "Access Denied: Unauthorized role.", Toast.LENGTH_LONG).show();
+                                return; // Stop the login process here
+                            }
+
+                            // 3. Proceed with login only for Head Director and Farm Technician
+                            String userId = userData.getUser() != null ? userData.getUser().toString() : "";
+                            String userName = userData.getFull_name() != null ? userData.getFull_name() : "User";
+                            String userEmail = email;
+                            String sessionToken = "cookie_auth";
+
+//                            sharedPrefManager.userLogin(userId, userName, userEmail, sessionToken);
+                            sharedPrefManager.userLogin(userId, userName, userEmail, userRole, sessionToken);
+
+                            // Optional: Save the role to SharedPrefs if you need to hide/show UI elements in the Dashboard
+                            // sharedPrefManager.saveRole(userRole);
+
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             Log.w(TAG, "No user data in response");
                             Toast.makeText(LoginActivity.this, "Login failed: No user data received", Toast.LENGTH_LONG).show();

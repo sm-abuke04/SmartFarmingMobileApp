@@ -6,6 +6,8 @@
     import com.example.capstoneproject.api.models.MotorStatusRequest;
     import com.example.capstoneproject.api.models.MotorHistory;
     import com.example.capstoneproject.api.models.AutomationRequest;
+    import com.example.capstoneproject.dashboard.models.Model;
+    import com.example.capstoneproject.user_profile.UserProfileResponse;
 
     import java.util.List;
     import java.util.Map;
@@ -21,6 +23,10 @@
         // Login
         @POST("api/auth/signin")
         Call<LoginResponse> login(@Body LoginRequest loginRequest);
+
+        // Add this to your ApiService interface
+        @GET("api/user/{id}")
+        Call<UserProfileResponse> getUserProfile(@Path("id") String userId);
 
         // Get all motors
         @GET("api/motor") // Adjust to real endpoint
@@ -41,10 +47,8 @@
         @POST("automation")
         Call<Void> setAutomation(@Body AutomationRequest request);
 
-
-
-
         // Get motor history
         @GET("api/motor/{id}/history")
         Call<List<MotorHistory>> getMotorHistory(@Path("id") int motorId);
+
     }

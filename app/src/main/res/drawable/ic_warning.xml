@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Triangle Background -->
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M1,21L12,2L23,21L1,21Z" />
+
+    <!-- Exclamation Mark (Vertical Bar) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11,10L13,10L13,16L11,16L11,10Z" />
+
+    <!-- Exclamation Mark (Dot) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M11,17L13,17L13,19L11,19L11,17Z" />
+
+</vector>

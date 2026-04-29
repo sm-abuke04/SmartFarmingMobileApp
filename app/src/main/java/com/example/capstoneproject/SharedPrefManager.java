@@ -10,6 +10,7 @@ public class SharedPrefManager {
     private static final String KEY_USER_EMAIL = "key_user_email";
     private static final String KEY_USER_ROLE = "key_user_role";
     private static final String KEY_IS_LOGGED_IN = "key_is_logged_in";
+    private static final String KEY_TOKEN = "key_token";
 
     private static SharedPrefManager mInstance;
     private static Context mCtx;
@@ -25,13 +26,14 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public void userLogin(String id, String name, String email, String role) {
+    public void userLogin(String id, String name, String email, String role, String token) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_USER_ID, id);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_EMAIL, email);
         editor.putString(KEY_USER_ROLE, role);
+        editor.putString(KEY_TOKEN, token); // Save the JWT here
         editor.putBoolean(KEY_IS_LOGGED_IN, true);
         editor.apply();
     }
@@ -59,6 +61,11 @@ public class SharedPrefManager {
     public String getUserRole() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_ROLE, "");
+    }
+
+    public String getToken() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_TOKEN, "");
     }
 
     public void logout() {

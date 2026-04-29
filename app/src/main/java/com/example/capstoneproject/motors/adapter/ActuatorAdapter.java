@@ -1,193 +1,20 @@
-//////package com.example.capstoneproject.motors.adapter;
-//////
-//////import android.view.LayoutInflater;
-//////import android.view.View;
-//////import android.view.ViewGroup;
-//////import android.widget.Switch;
-//////import android.widget.TextView;
-//////
-//////import androidx.annotation.NonNull;
-//////import androidx.recyclerview.widget.RecyclerView;
-//////
-//////import com.example.capstoneproject.R;
-//////import com.example.capstoneproject.motors.model.Actuator;
-//////
-//////import java.util.ArrayList;
-//////import java.util.List;
-//////
-//////public class ActuatorAdapter extends RecyclerView.Adapter<ActuatorAdapter.ViewHolder> {
-//////
-//////    public interface OnToggleListener {
-//////        void onToggle(Actuator actuator, boolean isOn);
-//////    }
-//////
-//////    private final List<Actuator> actuators = new ArrayList<>();
-//////    private final OnToggleListener toggleListener;
-//////
-//////    public ActuatorAdapter(OnToggleListener listener) {
-//////        this.toggleListener = listener;
-//////    }
-//////
-//////    public void setData(List<Actuator> newData) {
-//////        actuators.clear();
-//////        actuators.addAll(newData);
-//////        notifyDataSetChanged();
-//////    }
-//////
-//////    @NonNull
-//////    @Override
-//////    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//////        View view = LayoutInflater.from(parent.getContext())
-//////                .inflate(R.layout.item_actuator, parent, false);
-//////        return new ViewHolder(view);
-//////    }
-//////
-//////    @Override
-//////    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//////        Actuator actuator = actuators.get(position);
-//////
-//////        // --- NAME ---
-//////        holder.tvName.setText(actuator.getActuatorName());
-//////
-//////        // --- SWITCH STATE (from latest command) ---
-//////        boolean isOn = actuator.getLatestCommand().isOn();
-//////
-//////        // prevent recycled listener bug
-//////        holder.switchActuator.setOnCheckedChangeListener(null);
-//////        holder.switchActuator.setChecked(isOn);
-//////
-//////        // --- TOGGLE ---
-//////        holder.switchActuator.setOnCheckedChangeListener((buttonView, checked) -> {
-//////            if (toggleListener != null) {
-//////                toggleListener.onToggle(actuator, checked);
-//////            }
-//////        });
-//////    }
-//////
-//////    @Override
-//////    public int getItemCount() {
-//////        return actuators.size();
-//////    }
-//////
-//////    static class ViewHolder extends RecyclerView.ViewHolder {
-//////
-//////        TextView tvName;
-//////        Switch switchActuator;
-//////
-//////        ViewHolder(@NonNull View itemView) {
-//////            super(itemView);
-//////            tvName = itemView.findViewById(R.id.tvActuatorName);
-//////            switchActuator = itemView.findViewById(R.id.switchActuator);
-//////        }
-//////    }
-//////}
-////
-////
-////
-////
-////
-////
-////
-////package com.example.capstoneproject.motors.adapter;
-////
-////import android.view.LayoutInflater;
-////import android.view.View;
-////import android.view.ViewGroup;
-////import android.widget.Switch;
-////import android.widget.TextView;
-////
-////import androidx.annotation.NonNull;
-////import androidx.recyclerview.widget.RecyclerView;
-////
-////import com.example.capstoneproject.R;
-////import com.example.capstoneproject.motors.model.Actuator;
-////
-////import java.util.ArrayList;
-////import java.util.List;
-////
-////public class ActuatorAdapter extends RecyclerView.Adapter<ActuatorAdapter.ViewHolder> {
-////
-////    public interface OnToggleListener {
-////        void onToggle(Actuator actuator, boolean isOn);
-////    }
-////
-////    private final List<Actuator> actuators = new ArrayList<>();
-////    private final OnToggleListener toggleListener;
-////
-////    public ActuatorAdapter(OnToggleListener listener) {
-////        this.toggleListener = listener;
-////    }
-////
-////    public void setData(List<Actuator> newData) {
-////        actuators.clear();
-////        actuators.addAll(newData);
-////        notifyDataSetChanged();
-////    }
-////
-////    @NonNull
-////    @Override
-////    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-////        View view = LayoutInflater.from(parent.getContext())
-////                .inflate(R.layout.item_actuator, parent, false);
-////        return new ViewHolder(view);
-////    }
-////
-////    @Override
-////    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-////        Actuator actuator = actuators.get(position);
-////
-////        holder.tvName.setText(actuator.getActuatorName());
-////
-////        boolean isOn = actuator.getLatestCommand().isOn();
-////
-////        holder.switchActuator.setOnCheckedChangeListener(null);
-////        holder.switchActuator.setChecked(isOn);
-////
-////        holder.switchActuator.setOnCheckedChangeListener((buttonView, checked) -> {
-////            if (toggleListener != null) {
-////                // Update local state immediately
-////                actuator.setLatestCommand(checked ? 1 : 0, !actuator.getModelAssignments().isEmpty());
-////
-////                toggleListener.onToggle(actuator, checked);
-////            }
-////        });
-////    }
-////
-////
-////    @Override
-////    public int getItemCount() { return actuators.size(); }
-////
-////    static class ViewHolder extends RecyclerView.ViewHolder {
-////        TextView tvName;
-////        Switch switchActuator;
-////
-////        ViewHolder(@NonNull View itemView) {
-////            super(itemView);
-////            tvName = itemView.findViewById(R.id.tvActuatorName);
-////            switchActuator = itemView.findViewById(R.id.switchActuator);
-////        }
-////    }
-////}
-//
-//
-//
-//
-//
 //package com.example.capstoneproject.motors.adapter;
 //
+//import android.content.res.ColorStateList;
+//import android.graphics.Color;
 //import android.view.LayoutInflater;
 //import android.view.View;
 //import android.view.ViewGroup;
+//import android.widget.ImageView;
 //import android.widget.Switch;
 //import android.widget.TextView;
 //
 //import androidx.annotation.NonNull;
+//import androidx.core.widget.ImageViewCompat;
 //import androidx.recyclerview.widget.RecyclerView;
 //
 //import com.example.capstoneproject.R;
-//import com.example.capstoneproject.motors.model.Actuator;
-//import com.example.capstoneproject.motors.model.Command;
-//import com.example.capstoneproject.motors.model.GlobalCommand;
+//import com.example.capstoneproject.motors.model.ActuatorItem;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -195,19 +22,19 @@
 //public class ActuatorAdapter extends RecyclerView.Adapter<ActuatorAdapter.ViewHolder> {
 //
 //    public interface OnToggleListener {
-//        void onToggle(Actuator actuator, boolean isOn, boolean isGlobal);
+//        void onToggle(ActuatorItem item, boolean isOn);
 //    }
 //
-//    private final List<Actuator> actuators = new ArrayList<>();
+//    private final List<ActuatorItem> items = new ArrayList<>();
 //    private final OnToggleListener toggleListener;
 //
 //    public ActuatorAdapter(OnToggleListener listener) {
 //        this.toggleListener = listener;
 //    }
 //
-//    public void setData(List<Actuator> newData) {
-//        actuators.clear();
-//        actuators.addAll(newData);
+//    public void setData(List<ActuatorItem> data) {
+//        items.clear();
+//        items.addAll(data);
 //        notifyDataSetChanged();
 //    }
 //
@@ -219,61 +46,103 @@
 //        return new ViewHolder(view);
 //    }
 //
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        Actuator actuator = actuators.get(position);
+//@Override
+//public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//    ActuatorItem item = items.get(position);
+//    boolean isAuto = item.isAuto(); // Uses your logic from ActuatorItem.java
+//    boolean isOn = item.isOn();
 //
-//        holder.tvName.setText(actuator.getActuatorName());
+//    // 1. Set the Name
+//    holder.tvName.setText(item.getActuator().getActuatorName());
 //
-//        // Determine if actuator is Global or Model
-//        boolean isGlobal = "Global".equalsIgnoreCase(actuator.getScope());
+//    // 2. Clear listener first (Crucial for RecyclerView recycling)
+//    holder.switchActuator.setOnCheckedChangeListener(null);
 //
-//        // Get latest state
-//        boolean isOn;
-//        if (isGlobal) {
-//            List<GlobalCommand> globalCommands = actuator.getGlobalCommands();
-//            isOn = (globalCommands != null && !globalCommands.isEmpty()) &&
-//                    globalCommands.get(0).getCommand_value() == 1;
+//    // 3. APPLY LOCKDOWN
+//    if (isAuto) {
+//        // Mode: AUTO -> READ ONLY
+//        holder.switchActuator.setChecked(isOn);
+//        holder.switchActuator.setEnabled(false); // Grayed out and unclickable
+//        holder.tvStatus.setText("System Controlled (Auto)");
+//        holder.itemView.setAlpha(0.5f); // Visually "dim" the row to show it's locked
+//    } else {
+//        // Mode: MANUAL -> FULL CONTROL
+//        holder.switchActuator.setChecked(isOn);
+//        holder.switchActuator.setEnabled(true); // Clickable
+//
+//        String statusText = item.isGlobal() ? "Global Control" :
+//                (item.getModelAssignment().getHydroModel() != null ?
+//                        item.getModelAssignment().getHydroModel().getHydromodelName() : "Manual");
+//        holder.tvStatus.setText(statusText);
+//        holder.itemView.setAlpha(1.0f); // Full brightness
+//    }
+//
+//    // 4. Icons
+//    setDynamicIcon(holder.ivSensorIcon, item.getActuator().getActuatorName());
+//    updateIconStyle(holder.ivSensorIcon, isOn);
+//
+//    // 5. RE-ATTACH LISTENER (Only if not Auto)
+//    holder.switchActuator.setOnCheckedChangeListener((buttonView, checked) -> {
+//        // Even though the switch is disabled in Auto, this 'if' is a safety backup
+//        if (!isAuto) {
+//            updateIconStyle(holder.ivSensorIcon, checked);
+//            toggleListener.onToggle(item, checked);
+//        }
+//    });
+//}
+//
+//    private void setDynamicIcon(ImageView imageView, String name) {
+//        if (name == null) return;
+//        String lower = name.toLowerCase();
+//        int resId;
+//
+//        if (lower.contains("pump") || lower.contains("water")) {
+//            resId = R.drawable.ic_water_pump;
+//        } else if (lower.contains("fan") || lower.contains("vent") || lower.contains("exhaust")) {
+//            resId = R.drawable.ic_fan;
+//        } else if (lower.contains("light") || lower.contains("lamp") || lower.contains("bulb")) {
+//            resId = R.drawable.ic_light;
+//        } else if (lower.contains("mist") || lower.contains("fog") || lower.contains("humidifier")) {
+//            resId = R.drawable.ic_mister;
+//        } else if (lower.contains("heater") || lower.contains("heat")) {
+//            resId = R.drawable.ic_heater;
 //        } else {
-//            isOn = actuator.getLatestCommand().isOn();
+//            resId = R.drawable.ic_default_motor;
 //        }
 //
-//        // Prevent unwanted callback triggers
-//        holder.switchActuator.setOnCheckedChangeListener(null);
-//        holder.switchActuator.setChecked(isOn);
+//        imageView.setImageResource(resId);
+//    }
 //
-//        // Handle toggle
-//        holder.switchActuator.setOnCheckedChangeListener((buttonView, checked) -> {
-//            if (toggleListener != null) {
-//                // Update local state
-//                if (isGlobal) {
-//                    if (actuator.getGlobalCommands() == null) actuator.setGlobalCommands(new ArrayList<>());
-//                    List<GlobalCommand> cmds = actuator.getGlobalCommands();
-//                    cmds.clear();
-//                    cmds.add(new GlobalCommand(checked ? 1 : 0)); // correct type
-//                } else {
-//                    actuator.setLatestCommand(checked ? 1 : 0, !actuator.getModelAssignments().isEmpty());
-//                }
-//
-//                toggleListener.onToggle(actuator, checked, isGlobal);
-//            }
-//        });
+//    private void updateIconStyle(ImageView imageView, boolean isOn) {
+//        if (isOn) {
+//            ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(Color.parseColor("#2E7D32")));
+//            imageView.setAlpha(1f);
+//        } else {
+//            ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(Color.parseColor("#CCFFFFFF")));
+//            imageView.setAlpha(0.6f);
+//        }
 //    }
 //
 //    @Override
-//    public int getItemCount() { return actuators.size(); }
+//    public int getItemCount() {
+//        return items.size();
+//    }
 //
 //    static class ViewHolder extends RecyclerView.ViewHolder {
-//        TextView tvName;
+//        TextView tvName, tvStatus;
 //        Switch switchActuator;
+//        ImageView ivSensorIcon;
 //
 //        ViewHolder(@NonNull View itemView) {
 //            super(itemView);
 //            tvName = itemView.findViewById(R.id.tvActuatorName);
+//            tvStatus = itemView.findViewById(R.id.tvStatus);
 //            switchActuator = itemView.findViewById(R.id.switchActuator);
+//            ivSensorIcon = itemView.findViewById(R.id.ivSensorIcon);
 //        }
 //    }
 //}
+
 package com.example.capstoneproject.motors.adapter;
 
 import android.content.res.ColorStateList;
@@ -290,8 +159,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstoneproject.R;
-import com.example.capstoneproject.motors.model.Actuator;
-import com.example.capstoneproject.motors.model.GlobalCommand;
+import com.example.capstoneproject.motors.model.ActuatorItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -299,19 +167,21 @@ import java.util.List;
 public class ActuatorAdapter extends RecyclerView.Adapter<ActuatorAdapter.ViewHolder> {
 
     public interface OnToggleListener {
-        void onToggle(Actuator actuator, boolean isOn, boolean isGlobal);
+        void onToggle(ActuatorItem item, boolean isOn);
+        // Change 'boolean isAuto' to 'String nextMode'
+        void onModeChange(ActuatorItem item, String nextMode);
     }
 
-    private final List<Actuator> actuators = new ArrayList<>();
+    private final List<ActuatorItem> items = new ArrayList<>();
     private final OnToggleListener toggleListener;
 
     public ActuatorAdapter(OnToggleListener listener) {
         this.toggleListener = listener;
     }
 
-    public void setData(List<Actuator> newData) {
-        actuators.clear();
-        actuators.addAll(newData);
+    public void setData(List<ActuatorItem> data) {
+        items.clear();
+        items.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -325,104 +195,109 @@ public class ActuatorAdapter extends RecyclerView.Adapter<ActuatorAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Actuator actuator = actuators.get(position);
-        String actuatorName = actuator.getActuatorName();
-        holder.tvName.setText(actuatorName);
+        ActuatorItem item = items.get(position);
+        boolean isAuto = item.isAuto();
 
-        // 1. DYNAMIC ICON LOGIC (Uses ivSensorIcon to match your XML)
-        setDynamicIcon(holder.ivSensorIcon, actuatorName);
+        holder.tvName.setText(item.getActuator().getActuatorName());
+        setDynamicIcon(holder.ivSensorIcon, item.getActuator().getActuatorName());
 
-        // 2. STATE LOGIC with Null Safety
-        boolean isGlobal = "Global".equalsIgnoreCase(actuator.getScope());
-        boolean isOn = false;
+//        // 1. Reset the listener to prevent accidental triggers during recycling
+//        holder.switchActuator.setOnCheckedChangeListener(null);
+//        holder.switchActuator.setChecked(isOn);
+//
+//        // 2. THE CHANGE: Always keep the switch enabled so it can be toggled
+//        holder.switchActuator.setEnabled(true);
+//        holder.switchActuator.setAlpha(1.0f);
+//
+//        if (isAuto) {
+//            // Visual cue that it's in Auto, but "Unlockable"
+//            holder.tvStatus.setText("MODE: AUTO (Toggle to Override)");
+//            holder.tvStatus.setTextColor(Color.parseColor("#FFA500")); // Orange warning
+//
+//            // Optional: Change switch track color to indicate "Auto" state
+//            holder.switchActuator.setThumbTintList(ColorStateList.valueOf(Color.parseColor("#FFA500")));
+//        } else {
+//            holder.tvStatus.setText("MODE: MANUAL");
+//            holder.tvStatus.setTextColor(Color.WHITE);
+//            holder.switchActuator.setThumbTintList(ColorStateList.valueOf(Color.WHITE));
+//        }
+//
+//        // 3. Re-attach the listener
+//        holder.switchActuator.setOnCheckedChangeListener((btn, checked) -> {
+//            toggleListener.onToggle(item, checked);
+//        });
 
-        if (isGlobal) {
-            List<GlobalCommand> globalCommands = actuator.getGlobalCommands();
-            isOn = (globalCommands != null && !globalCommands.isEmpty()) &&
-                    globalCommands.get(0).getCommand_value() == 1;
+        holder.switchActuator.setOnCheckedChangeListener(null);
+        holder.switchActuator.setChecked(isAuto); // Switch represents Auto mode
+        holder.switchActuator.setEnabled(true);
+        holder.switchActuator.setAlpha(1.0f);
+
+        if (isAuto) {
+            holder.tvStatus.setText("MODE: AUTO");
+            holder.tvStatus.setTextColor(Color.parseColor("#4CAF50")); // Green
+            updateIconStyle(holder.ivSensorIcon, true);
         } else {
-            // Null check prevents crash if no command history exists
-            if (actuator.getLatestCommand() != null) {
-                isOn = actuator.getLatestCommand().isOn();
-            }
+            holder.tvStatus.setText("MODE: MANUAL");
+            holder.tvStatus.setTextColor(Color.LTGRAY);
+            updateIconStyle(holder.ivSensorIcon, false);
         }
 
-        // 3. UI FEEDBACK
-        updateIconStyle(holder.ivSensorIcon, isOn);
-        holder.tvStatus.setText(isOn ? "Actuator Running" : "Actuator Stopped");
+        holder.switchActuator.setOnCheckedChangeListener((btn, checked) -> {
+            toggleListener.onToggle(item, checked);
+        });
 
-        // 4. SWITCH LOGIC
-        holder.switchActuator.setOnCheckedChangeListener(null);
-        holder.switchActuator.setChecked(isOn);
-
-        boolean finalIsGlobal = isGlobal;
-        holder.switchActuator.setOnCheckedChangeListener((buttonView, checked) -> {
-            if (toggleListener != null) {
-                // Update UI immediately for responsiveness
-                updateIconStyle(holder.ivSensorIcon, checked);
-                holder.tvStatus.setText(checked ? "Actuator Running" : "Actuator Stopped");
-
-                if (finalIsGlobal) {
-                    if (actuator.getGlobalCommands() == null) actuator.setGlobalCommands(new ArrayList<>());
-                    actuator.getGlobalCommands().clear();
-                    actuator.getGlobalCommands().add(new GlobalCommand(checked ? 1 : 0));
-                } else {
-                    actuator.setLatestCommand(checked ? 1 : 0, !actuator.getModelAssignments().isEmpty());
-                }
-
-                toggleListener.onToggle(actuator, checked, finalIsGlobal);
-            }
+        // 4. Keep the text click for manual mode switching
+        holder.tvStatus.setOnClickListener(v -> {
+            String nextMode = isAuto ? "Manual" : "Auto";
+            toggleListener.onModeChange(item, nextMode);
         });
     }
 
     private void setDynamicIcon(ImageView imageView, String name) {
         if (name == null) return;
-        String lowerName = name.toLowerCase();
+        String lower = name.toLowerCase();
         int resId;
 
-        if (lowerName.contains("pump") || lowerName.contains("water")) {
+        if (lower.contains("pump") || lower.contains("water")) {
             resId = R.drawable.ic_water_pump;
-        } else if (lowerName.contains("fan") || lowerName.contains("vent") || lowerName.contains("exhaust")) {
+        } else if (lower.contains("fan") || lower.contains("vent") || lower.contains("exhaust")) {
             resId = R.drawable.ic_fan;
-        } else if (lowerName.contains("light") || lowerName.contains("lamp") || lowerName.contains("bulb")) {
+        } else if (lower.contains("light") || lower.contains("lamp") || lower.contains("bulb")) {
             resId = R.drawable.ic_light;
-        } else if (lowerName.contains("mist") || lowerName.contains("fog") || lowerName.contains("humidifier")) {
+        } else if (lower.contains("mist") || lower.contains("fog") || lower.contains("humidifier")) {
             resId = R.drawable.ic_mister;
-        } else if (lowerName.contains("heater") || lowerName.contains("heat")) {
+        } else if (lower.contains("heater") || lower.contains("heat")) {
             resId = R.drawable.ic_heater;
         } else {
             resId = R.drawable.ic_default_motor;
         }
-
         imageView.setImageResource(resId);
     }
 
     private void updateIconStyle(ImageView imageView, boolean isOn) {
         if (isOn) {
-            // Active: Green tint
             ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(Color.parseColor("#2E7D32")));
-            imageView.setAlpha(1.0f);
+            imageView.setAlpha(1f);
         } else {
-            // Inactive: White tint (to match your XML default look)
             ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(Color.parseColor("#CCFFFFFF")));
             imageView.setAlpha(0.6f);
         }
     }
 
     @Override
-    public int getItemCount() { return actuators.size(); }
+    public int getItemCount() { return items.size(); }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvStatus;
         Switch switchActuator;
-        ImageView ivSensorIcon; // Updated to match XML ID
+        ImageView ivSensorIcon;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvActuatorName);
             tvStatus = itemView.findViewById(R.id.tvStatus);
             switchActuator = itemView.findViewById(R.id.switchActuator);
-            ivSensorIcon = itemView.findViewById(R.id.ivSensorIcon); // Updated
+            ivSensorIcon = itemView.findViewById(R.id.ivSensorIcon);
         }
     }
 }

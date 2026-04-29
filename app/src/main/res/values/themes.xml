@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.CapstoneProject" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.CapstoneProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--        <item name="colorSecondaryContainer">#1B3320</item>-->
+<!--        <item name="colorOnSecondaryContainer">#FFFFFF</item>-->
     </style>
 
     <style name="CircleImage">

@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import com.example.capstoneproject.SharedPrefManager;
 import com.example.capstoneproject.motors.model.Actuator;
 import com.example.capstoneproject.dashboard.models.Model;
 import com.example.capstoneproject.dashboard.models.DashboardResponse;
@@ -36,26 +37,31 @@ public class RetrofitClient {
     // Your specific backend URL
     public static final String BASE_URL = "https://uep-smartfarming-backend.onrender.com/";
 
+   // public static final String BASE_URL = "http://192.168.254.199:5000/";
+
     private RetrofitClient(Context context) {
-        // Initialize CookieManager to handle cookies
         cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-        CookieHandler.setDefault(cookieManager);
 
-        // Create logging interceptor
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        //loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-// Use HEADERS to see cookies
 
-        // Create OkHttp client with longer timeouts for Render.com
         okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                // ADD THIS INTERCEPTOR BELOW
+                .addInterceptor(chain -> {
+                    okhttp3.Request original = chain.request();
+                    String token = SharedPrefManager.getInstance(context).getToken();
+
+                    okhttp3.Request.Builder requestBuilder = original.newBuilder()
+                            .header("Authorization", "Bearer " + token) // Attach the token
+                            .method(original.method(), original.body());
+
+                    return chain.proceed(requestBuilder.build());
+                })
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -108,6 +114,10 @@ public interface DashboardApi {
             @Query("modelId") int modelId,
             @Query("global") boolean isGlobal
     );
+
+    @GET("/model/{modelId}")
+    Call<List<Model>> getHydroModelId(@Path("id") int modelId);
+
 
     // Update actuator status
     @PUT("/actuators/{id}")

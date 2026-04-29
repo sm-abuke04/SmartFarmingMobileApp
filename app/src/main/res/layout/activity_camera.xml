@@ -54,7 +54,7 @@
                         android:layout_height="match_parent"
                         android:background="#000"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bg_switcher_pill" />
+                        android:src="@drawable/hydroponic" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:background="#FFFFFF"
-            app:itemIconTint="#0A3327"
+            app:itemIconTint="#15a178"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
